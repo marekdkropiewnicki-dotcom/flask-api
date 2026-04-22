@@ -1,5 +1,5 @@
-def test_create_app(app):
-    """Creating the app with TESTING=True succeeds."""
+def test_app_testing_mode(app):
+    """App is configured with TESTING=True."""
     assert app is not None
     assert app.config["TESTING"] is True
 
@@ -32,5 +32,5 @@ def test_status(client):
     body = response.get_json()
     assert body["status"] == 200
     assert body["message"] == "Service status"
-    assert "uptime_seconds" in body["data"]
-    assert "environment" in body["data"]
+    assert isinstance(body["data"]["uptime_seconds"], (int, float))
+    assert isinstance(body["data"]["environment"], str)
