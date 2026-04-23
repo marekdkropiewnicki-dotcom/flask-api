@@ -5,10 +5,12 @@ from app import create_app
 
 @pytest.fixture()
 def app():
-    app = create_app("testing")
+    app = create_app()
     app.config.update(
         {
             "TESTING": True,
+            "ENVIRONMENT": "testing",
+            "DEBUG": False,
         }
     )
     yield app
