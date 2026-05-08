@@ -1,3 +1,5 @@
+"""Pytest fixtures for the Flask application test suite."""
+
 import pytest
 
 from app import create_app
@@ -5,17 +7,19 @@ from app import create_app
 
 @pytest.fixture()
 def app():
-    app = create_app()
-    app.config.update(
+    """Create and configure a Flask app instance for tests."""
+    flask_app = create_app()
+    flask_app.config.update(
         {
             "TESTING": True,
             "ENVIRONMENT": "testing",
             "DEBUG": False,
         }
     )
-    yield app
+    yield flask_app
 
 
 @pytest.fixture()
-def client(app):
+def client(app):  # pylint: disable=redefined-outer-name
+    """Return a Flask test client for the configured app fixture."""
     return app.test_client()
