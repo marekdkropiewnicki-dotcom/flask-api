@@ -36,7 +36,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' || env.CODECOV_TOKEN != '' }}
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ env.CODECOV_TOKEN }}
           slug: marekdkropiewnicki-dotcom/flask-api
